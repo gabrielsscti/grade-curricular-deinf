@@ -16,9 +16,7 @@ body{
     display:flex;
     flex-direction: column;
     width:160px;
-    height:120px;
-    justify-content: space-between;
-    border-width: 1px;
+    height:80px;
     box-shadow: 0px 3px 10px #c2b9b9;
     /*background-image: linear-gradient(to right, rgb(140, 182, 134), rgb(7, 124, 7));*/
     background-color: #ffffff;
@@ -32,16 +30,9 @@ body{
     border-radius:7px;
     min-height: min-content;
 }
-@media (max-width: 720px) {
-    .cadeira-container {
-        padding:5px;
-        display:flex;
-        flex-direction: column;
-        width:90%;
-        justify-content: space-between;
-        height:90px;
-    }
-  }
+
+
+
 .cadeira-topinfo{
     flex-grow:1;
     width:100%;
@@ -122,8 +113,34 @@ body{
 
 .cadeira-table{
     width: 1280px;
-    height: 600px;
+    height:600px;
     display:flex;
     flex-direction:row;
-    overflow:scroll;
+    padding-left:5px;
+    padding-right:5px;
+    overflow:auto;
+}
+
+.cadeira-dropdown{
+    height:40px;
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .cadeira-table{
+        flex-direction: column;
+        flex-grow:1;
+        width:0;
+        height:100%;
+        width:100%;
+        overflow:hidden;
+        align-items:center;
+    }
+    .cadeira-container{
+        overflow:hidden;
+        width:95%;
+    }
+    .cadeira-periodo-column{
+        width:100%;
+    }
 }
