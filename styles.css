@@ -1,0 +1,129 @@
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    color: #141414;
+    background-color: #F7FAFC;
+}
+
+.clicked {
+    background-color: rgb(184, 187, 184) !important;
+}
+
+.cadeira-container{
+    transition: background-color 0.5s ease-out;
+    padding:9px;
+    display:flex;
+    flex-direction: column;
+    width:160px;
+    height:120px;
+    justify-content: space-between;
+    border-width: 1px;
+    box-shadow: 0px 3px 10px #c2b9b9;
+    /*background-image: linear-gradient(to right, rgb(140, 182, 134), rgb(7, 124, 7));*/
+    background-color: #ffffff;
+    /*background-color: #439889;*/
+    /*border-color: #439889;
+    border-style: solid;
+    border-width:2px;*/
+    color: #000000;
+    margin-bottom: 3px;
+    margin-right:3px;
+    border-radius:7px;
+    min-height: min-content;
+}
+@media (max-width: 720px) {
+    .cadeira-container {
+        padding:5px;
+        display:flex;
+        flex-direction: column;
+        width:90%;
+        justify-content: space-between;
+        height:90px;
+    }
+  }
+.cadeira-topinfo{
+    flex-grow:1;
+    width:100%;
+    display:flex;
+    font-weight: bold;
+}
+.cadeira-topinfo-left{
+    flex-grow:1;
+    width:100%;
+    text-align:left;
+}
+.cadeira-topinfo-right{
+    flex-grow:1;
+    text-align: right;
+    width:100%;
+}
+.cadeira-midinfo{
+    flex-grow:3;
+    display:flex;
+    text-align:center;
+    align-items:center;
+    justify-content: center;
+    width:100%;
+    height:100%;
+    overflow:visible;
+}
+.cadeira-botinfo{
+    flex-grow:2;
+    display:flex;
+    justify-content: flex-start;
+    flex-direction:row;
+    width:100%;
+}
+.cadeira-botinfo-left{
+    display:flex;
+    flex-grow:1;
+    height:100%;
+    align-items: center;
+    text-align:left;
+    
+}
+.cadeira-botinfo-right{
+    display:flex;
+    height:100%;
+    justify-content: space-between;
+    flex-direction:row;
+    flex-grow:1;
+}
+
+.cadeira-btn{
+    display:flex;
+    flex-grow:1;
+    align-items: center;
+    justify-content: center;
+    cursor:pointer;
+    font-size:12px;
+}
+.cadeira-btn-ementa{
+    background-color: #003d33;
+    color: white;
+}
+.cadeira-btn-prereq{
+    background-color:#b3bc6d;
+    color: white;
+}
+
+.cadeira-periodo-column{
+    display:flex;
+    flex-grow:1;
+    flex-direction:column;
+    text-align: center;
+}
+
+.cadeira-periodo-content{
+    display:flex;
+    flex-grow:9;
+}
+
+.cadeira-table{
+    width: 1280px;
+    height: 600px;
+    display:flex;
+    flex-direction:row;
+    overflow:scroll;
+}
