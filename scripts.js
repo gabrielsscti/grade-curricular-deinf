@@ -7,6 +7,7 @@ function highlightCards(ids, parentCadeira){
     for(i=0; i<x.length; i++)
         x[i].style.display = "none";
     ids.forEach(element => {
+        console.log(element);
         highlight(element);
         if(screen.width<=768){
             console.log("cadeira-dropdown-"+parentCadeira+"-"+element);
@@ -14,6 +15,20 @@ function highlightCards(ids, parentCadeira){
             temp.style.display="inherit"
         }
     });
+}
+
+function displayGrupoEletiva(id){
+    x = document.getElementById("grupo-"+id);
+    if(!x.classList.contains("cadeira-grupo-body-active")){
+        x = document.getElementsByClassName("cadeira-grupo-body");
+        for(i=0; i<x.length; i++)
+            x[i].classList.remove("cadeira-grupo-body-active");
+        x = document.getElementById("grupo-"+id);
+        x.classList.add("cadeira-grupo-body-active");
+    }
+    else{
+        x.classList.remove("cadeira-grupo-body-active")
+    }
 }
 
 function highlight(item){
