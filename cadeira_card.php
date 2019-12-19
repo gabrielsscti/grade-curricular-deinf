@@ -10,7 +10,7 @@
 
         </div>
         <div class='cadeira-botinfo-right'>
-            <div onclick="location.href='#'" class='cadeira-btn cadeira-btn-ementa'>E</div>
+            <div onclick='displayModal(<?php echo $idCadeira?>)' class='cadeira-btn cadeira-btn-ementa'>E</div>
             <div onclick='highlightCards(<?php echo json_encode($preReqData) . ", ". $idCadeira; ?>)' class='cadeira-btn cadeira-btn-prereq'>P</div>
         </div>
     </div>

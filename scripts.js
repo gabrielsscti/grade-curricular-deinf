@@ -35,3 +35,13 @@ function highlight(item){
     element = document.getElementById("cadeira-"+item);
     element.classList.add("clicked");
 }
+
+function displayModal(id){
+    element = document.getElementById("ementa-"+id);
+    element.style.display = "block";
+}
+
+function closeModal(id){
+    element = document.getElementById("ementa-"+id);
+    element.style.display="none";
+}
