@@ -66,12 +66,12 @@
             ?>
             <div class="cadeira-list">
                 <?php
-                    $cont = 1;
+                    $grupoCont = 1;
                     foreach($grupos as $cadeiras){
                         ?>
                         <div class="cadeira-grupo">
-                            <div onclick='displayGrupoEletiva(<?php echo $cont;?>)' class="cadeira-grupo-header">
-                                <?php echo "Disciplinas Eletivas - Grupo $cont"; $cont;?>
+                            <div onclick='displayGrupoEletiva(<?php echo $grupoCont;?>)' class="cadeira-grupo-header">
+                                <?php echo "Disciplinas Eletivas - Grupo $grupoCont";$grupoCont++;?>
                             </div>
                             <table class="cadeira-grupo-body" id="grupo-<?php echo $cont++ ?>">
                                 <thead>
@@ -85,12 +85,13 @@
                                 </thead>
                                 <tbody>
                                 <?php 
-                                    $temp = 0;
+                                    $cont = 0;
                                     foreach($cadeiras as $i){
-                                        if($temp++%2==0)
+                                        if($cont%2==0)
                                             echo "<tr class=\"row-light\" id=\"cadeira-" . $i["idCadeira"] . "\">";
                                         else
                                             echo "<tr class=\"row-dark\" id=\"cadeira-" . $i["idCadeira"] . "\">";
+                                        $cont++;
                                         echo "<th class=\"column1\">".$i["departamento"]."</th>";
                                         echo "<th class=\"column2\">".$i["codigo"]."</th>";
                                         echo "<th class=\"column3\">".$i["creditos"]."</th>";
