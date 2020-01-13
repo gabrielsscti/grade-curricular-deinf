@@ -1,7 +1,6 @@
 <?php
-
-include './Control/requires.php';
-include './consts.php';
+include 'view_functions.php';
+$dc = new DAOCadeira();
 
 ?>
 <!DOCTYPE html>
@@ -10,7 +9,7 @@ include './consts.php';
 <head>
     <meta charset='UTF-8' />
     <title>Bloco Cadeira DEINF</title>
-    <link rel='stylesheet' href='styles.css' />
+    <link rel='stylesheet' href='./View/css/styles.css' />
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 </head>
 
@@ -18,52 +17,34 @@ include './consts.php';
     <div class="grade">
         <div class="cadeira-table">
             <?php
-            include 'helpers_functions.php';
-            $cardDirectory = $_SERVER['DOCUMENT_ROOT'] . $_SERVER['REQUEST_URI'] . CADEIRA_FILE;
-
-            if (strpos($cardDirectory, basename(__FILE__)) !== false)
-                $cardDirectory = str_replace(basename(__FILE__), '', $cardDirectory);
+            
 
             $actPeriodo = 1;
-            $conn = DBConnect(); //Conecta à DB
-            $data = DBRead("cadeira", "WHERE periodo IS NOT NULL ORDER BY periodo ASC"); //Pega todas as cadeiras obrigatórias
-
+            $cadeiras = $dc->getCadeirasObrigatorias();
+            
             ?>
             <div class="cadeira-periodo-column">
                 <strong>PERÍODO 1</strong>
 
                 <?php
-                foreach ($data as $i) {
-                    $preReqData = DBRead("cadeiracadeira", "WHERE idCadeira = {$i['idCadeira']}", "idPreRequisito");//Pega todos os pré-requisitos
-                    if ($actPeriodo != $i["periodo"]) {
+                foreach ($cadeiras as $cadeira) {
+                    if ($actPeriodo != $cadeira->getPeriodo()) {
                 ?>
             </div>
             <div class="cadeira-periodo-column">
         <?php
-                        echo "<strong>PERÍODO " . $i["periodo"] . "</strong>";
-                        $actPeriodo = $i["periodo"];
+                        echo "<strong>PERÍODO " . $cadeira->getPeriodo() . "</strong>";
+                        $actPeriodo = $cadeira->getPeriodo();
                     }
-                    if ($preReqData) {
-                        array_push($i, $preReqData);
-                        $i["preReqData"] = array();
-                        foreach ($i[0] as $j) {
-                            array_push($i["preReqData"], $j["idPreRequisito"]);
-                        }
-                        $r = $i;
-                    } else
-                        $r = $i;
-                    includeWithVariable($cardDirectory, $r);//Cria um novo card para cada cadeira obrigatória
+                    $_SESSION['actCadeira'] = $cadeira;
+                    include getCardDirectory(basename(__FILE__));//Cria um novo card para cada cadeira obrigatória
                 }
-                DBClose($conn);
         ?>
             </div>
         </div>
         <?php
-        $numGrupos = 2;
-        $grupos = array();
-        for ($i = 1; $i <= 2; $i++)
-            $grupos[$i] = DBRead("cadeira", "WHERE periodo IS NULL and grupo = $i ORDER BY nome"); //Pega todas as cadeiras eletivas por grupos(1 e 2)
-
+        $numGrupos = DAOCadeira::getMaxGrupos();
+        $grupos = $dc->getCadeirasEletivas();
         ?>
         <div class="cadeira-list">
             <?php
@@ -71,7 +52,7 @@ include './consts.php';
             foreach ($grupos as $cadeiras) {//Para cada grupo de cadeira, cria uma lista de cadeiras.
             ?>
                 <div class="cadeira-grupo">
-                    <div onclick='displayGrupoEletiva(<?php echo $grupoCont; ?>)' class="cadeira-grupo-header">
+                    <div class="cadeira-grupo-header">
                         <?php echo "Disciplinas Eletivas - Grupo $grupoCont";
                         $grupoCont++; ?>
                     </div>
@@ -126,7 +107,7 @@ include './consts.php';
         includeWithVariable($modalDirectory, $i);
     }
     ?>
-    <script src="./scripts.js"> </script>
+    <script src="./View/js/scripts.js"> </script>
 </body>
 
 </html>

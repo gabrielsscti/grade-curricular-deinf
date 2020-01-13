@@ -1,4 +1,5 @@
 function highlightCards(ids, parentCadeira){
+    console.log(ids, parentCadeira);
     x = document.getElementsByClassName("cadeira-container");
     for(i=0; i<x.length; i++)
         x[i].classList.remove("clicked");
