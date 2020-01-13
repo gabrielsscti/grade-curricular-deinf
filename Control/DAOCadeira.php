@@ -73,6 +73,14 @@ class DAOCadeira{
         return $this->getCadeiraFromArray($dataCadeira[0]);
     }
 
+    public function getAllCadeiras(){
+        $dataCadeira = $this->read();
+        $cadeiras = array();
+        foreach($dataCadeira as $i)
+            array_push($cadeiras, $this->getCadeiraFromArray($i));
+        return $cadeiras;
+    }
+
     private function getCadeiraFromArray($cadeira){
         return new Cadeira(
             $cadeira["idCadeira"],
@@ -88,7 +96,7 @@ class DAOCadeira{
     }
 
     public function getCadeirasEletivas(){
-        $dataCadeira = $this->read("WHERE periodo IS NULL ORDER BY grupo ASC");
+        $dataCadeira = $this->read("WHERE periodo IS NULL ORDER BY grupo, nome ASC");
         $r = array();
         foreach($dataCadeira as $i){
             $cadeira = $this->getCadeiraFromArray($i);

@@ -210,7 +210,26 @@ thead{
     display: none;
 }
 
+.mobile-expandable{
+    display:none;
+}
+td{
+    padding-left:6px;
+    padding-right:6px;
+}
+
 @media (max-width: 768px) {
+    .mobile-expandable{
+        display:flex;
+        flex-grow:1;
+        flex-direction:row;
+    }
+    .grade{
+        width:95%;
+    }
+    .column5{
+        display:none;
+    }
     .cadeira-table{
         flex-direction: column;
         flex-grow:1;

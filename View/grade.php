@@ -48,15 +48,16 @@ $dc = new DAOCadeira();
         ?>
         <div class="cadeira-list">
             <?php
-            $grupoCont = 1;
             foreach ($grupos as $cadeiras) {//Para cada grupo de cadeira, cria uma lista de cadeiras.
             ?>
                 <div class="cadeira-grupo">
                     <div class="cadeira-grupo-header">
-                        <?php echo "Disciplinas Eletivas - Grupo $grupoCont";
-                        $grupoCont++; ?>
+                        <?php 
+                        $actGrupo = $cadeiras[0]->getGrupo();
+                        echo $actGrupo ? "Disciplinas Eletivas - Grupo $actGrupo" :"Complementos" ;
+                        ?>
                     </div>
-                    <table class="cadeira-grupo-body" id="grupo-<?php echo $cont++ ?>">
+                    <table class="cadeira-grupo-body" id="grupo-<?php echo ($actGrupo ? $actGrupo : 0) ?>">
                         <thead>
                             <tr>
                                 <th class="column1">DEPT.</th>
@@ -71,27 +72,27 @@ $dc = new DAOCadeira();
                             $cont = 0;
                             foreach ($cadeiras as $i) {
                                 if ($cont % 2 == 0)
-                                    echo "<tr class=\"row-light\" id=\"cadeira-" . $i["idCadeira"] . "\">";
+                                    echo "<tr class=\"row-light\" id=\"cadeira-" . $i->getIdCadeira() . "\">";
                                 else
-                                    echo "<tr class=\"row-dark\" id=\"cadeira-" . $i["idCadeira"] . "\">";
+                                    echo "<tr class=\"row-dark\" id=\"cadeira-" . $i->getIdCadeira() . "\">";
                                 $cont++;
-                                echo "<th class=\"column1\">" . $i["departamento"] . "</th>";
-                                echo "<th class=\"column2\">" . $i["codigo"] . "</th>";
-                                echo "<th class=\"column3\">" . $i["creditos"] . "</th>";
-                                echo "<th class=\"column4\">" . $i["nome"] . "</th>";
-                                $temp = DBRead("cadeiracadeira", "WHERE idCadeira = {$i['idCadeira']}", "idPreRequisito");
-                                $preReqData = array();
-                                foreach ($temp[0] as $j)
-                                    array_push($preReqData, $j);
+                                echo "<td class=\"column1\">" . $i->getDepartamento() . "</td>";
+                                echo "<td class=\"column2\">" . $i->getCodigo() . "</td>";
+                                echo "<td class=\"column3\">" . $i->getCreditos() . "</td>";
+                                echo "<td class=\"column4\">" . $i->getNome() . "</td>";
                             ?>
-                                <th class="column5">
-                                    <div onclick='displayModal(<?php echo $i["idCadeira"]?>)' class='cadeira-btn cadeira-btn-ementa'>E</div>
-                                    <div onclick='highlightCards(<?php echo json_encode($preReqData) . ", " . $idCadeira; ?>)' class='cadeira-btn cadeira-btn-prereq'>P</div>
-                                </th>
+                                <td class="column5">
+                                    <div onclick='displayModal(<?php echo $i->getIdCadeira() ?>)' class='cadeira-btn cadeira-btn-ementa'>E</div>
+                                    <div onclick='highlightCards(<?php echo json_encode($i->getPreReqsIds()) . ", " . $i->getIdCadeira(); ?>)' class='cadeira-btn cadeira-btn-prereq'>P</div>
+                                </td>
+                                
                             <?php
                                 echo "</tr>";
+                                ?>
+                            <?php
                             }
                             ?>
+                            
                         </tbody>
                     </table>
                 </div>
@@ -101,10 +102,10 @@ $dc = new DAOCadeira();
         </div>
     </div>
     <?php
-    $data = DBRead("cadeira");
+    $data = $dc->getAllCadeiras();
     foreach ($data as $i) {
-        $modalDirectory = $_SERVER['DOCUMENT_ROOT'] . $_SERVER['REQUEST_URI'] . MODAL_FILE;
-        includeWithVariable($modalDirectory, $i);
+        $_SESSION["actCadeira"] = $i;
+        include getModalDirectory(basename(__FILE__));
     }
     ?>
     <script src="./View/js/scripts.js"> </script>
