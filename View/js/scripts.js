@@ -8,7 +8,6 @@ function highlightCards(ids, parentCadeira){
     for(i=0; i<x.length; i++)
         x[i].style.display = "none";
     ids.forEach(element => {
-        console.log(element);
         highlight(element);
         if(screen.width<=768){
             console.log("cadeira-dropdown-"+parentCadeira+"-"+element);

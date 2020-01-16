@@ -24,9 +24,9 @@ $cadeira = $_SESSION['actCadeira'];
 <?php 
     foreach($cadeira->getPreReqs() as $cadeiraPreReq){
         ?>
-        <a href="#cadeira-<?php echo $cadeiraPreReq->getIdCadeira() ?>">
+        <a class="preReqLink" href="#cadeira-<?php echo $cadeiraPreReq->getIdCadeira() ?>">
             <div onclick='' class='cadeira-container cadeira-dropdown' id = "cadeira-dropdown-<?php echo $cadeira->getIdCadeira() . "-" . $cadeiraPreReq->getIdCadeira()?>">
-                Go to <?php echo $cadeiraPreReq->getIdCadeira() ?>
+                Ir para <?php echo $cadeiraPreReq->getNome() ?>
             </div>
         </a>
         <?php

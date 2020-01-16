@@ -15,7 +15,7 @@ $dc = new DAOCadeira();
 
 <body>
     <div class="grade">
-        <div class="cadeira-table">
+        <div class="cadeira-table" id = "init">
             <?php
             
 
@@ -76,15 +76,19 @@ $dc = new DAOCadeira();
                                 else
                                     echo "<tr class=\"row-dark\" id=\"cadeira-" . $i->getIdCadeira() . "\">";
                                 $cont++;
-                                echo "<td class=\"column1\">" . $i->getDepartamento() . "</td>";
-                                echo "<td class=\"column2\">" . $i->getCodigo() . "</td>";
-                                echo "<td class=\"column3\">" . $i->getCreditos() . "</td>";
-                                echo "<td class=\"column4\">" . $i->getNome() . "</td>";
+                                echo "<th class=\"column1\">" . $i->getDepartamento() . "</th>";
+                                echo "<th class=\"column2\">" . $i->getCodigo() . "</th>";
+                                echo "<th class=\"column3\">" . $i->getCreditos() . "</th>";
+                                echo "<th class=\"column4\">" . $i->getNome() . "</th>";
                             ?>
-                                <td class="column5">
-                                    <div onclick='displayModal(<?php echo $i->getIdCadeira() ?>)' class='cadeira-btn cadeira-btn-ementa'>E</div>
-                                    <div onclick='highlightCards(<?php echo json_encode($i->getPreReqsIds()) . ", " . $i->getIdCadeira(); ?>)' class='cadeira-btn cadeira-btn-prereq'>P</div>
-                                </td>
+                                <th class="column5">
+                                    <a onclick='displayModal(<?php echo $i->getIdCadeira() ?>);' href="#init" class='cadeira-btn cadeira-btn-ementa tableBtn'>
+                                    E
+                                    </a>
+                                    <a href="#init" class='cadeira-btn cadeira-btn-prereq tableBtn' onclick='highlightCards(<?php echo json_encode($i->getPreReqsIds()) . ", " . $i->getIdCadeira(); ?>)'>
+                                    P
+                                    </a>
+                                </th>
                                 
                             <?php
                                 echo "</tr>";

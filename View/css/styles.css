@@ -11,8 +11,9 @@ body{
     display:flex;
     flex-direction: column;
     flex-grow:1;
-    width:80%;
+    width:95%;
     margin:auto;
+    overflow: hidden;
 }
 
 .cadeira-list{
@@ -34,12 +35,25 @@ body{
 
 .column4{
     width: 40%;
+    overflow:hidden;
+}
+
+th{
+    overflow: hidden;
 }
 
 .column5{
     display:flex;
     flex-grow:1;
-    justify-content: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding:0;
+}
+
+.tableBtn{
+    height:100%;
+    text-decoration: none;
 }
 
 .cadeira-grupo-body{
@@ -206,8 +220,12 @@ thead{
 }
 
 .cadeira-dropdown{
-    height:40px;
+    height:20px;
     display: none;
+}
+
+.preReqLink{
+    text-decoration: none;
 }
 
 .mobile-expandable{
