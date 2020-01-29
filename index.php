@@ -1,4 +1,4 @@
-<?php 
+<?php
 include './requires.php';
-include './View/grade.php' 
+include './View/grade.php';
 ?>
