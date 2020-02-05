@@ -14,7 +14,6 @@ $cadeira = $_SESSION["actCadeira"];
             </div>
             
         </div>
-        <hr>
         <div class = "modal-body">
             <?php echo $cadeira->getEmenta(); ?>
         </div>
