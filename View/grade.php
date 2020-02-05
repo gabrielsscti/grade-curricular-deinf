@@ -3,17 +3,7 @@ include 'view_functions.php';
 $dc = new DAOCadeira();
 
 ?>
-<!DOCTYPE html>
-<html lang='en'>
 
-<head>
-    <meta charset='UTF-8' />
-    <title>Bloco Cadeira DEINF</title>
-    <link rel='stylesheet' href='./View/css/styles.css' />
-    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-</head>
-
-<body>
     <div class="grade">
         <div class="cadeira-table" id = "init">
             <?php
@@ -112,7 +102,4 @@ $dc = new DAOCadeira();
         include getModalDirectory(basename(__FILE__));
     }
     ?>
-    <script src="./View/js/scripts.js"> </script>
-</body>
 
-</html>

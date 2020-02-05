@@ -18,6 +18,6 @@ $cadeira = $_SESSION["actCadeira"];
         <div class = "modal-body">
             <?php echo $cadeira->getEmenta(); ?>
         </div>
-        </div>
     </div>
 </div>
+
